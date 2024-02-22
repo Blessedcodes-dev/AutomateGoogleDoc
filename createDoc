@@ -1,0 +1,67 @@
+const wbId = 'XXXXXXXXXXXXXXXXXXXXXXXXXX';
+const sheetId = xxxx;
+
+
+function main(){
+  var datasheet = getSheetById(wbId, sheetId);
+  var data = datasheet.getRange(1,1,datasheet.getLastRow(),datasheet.getLastColumn()).getDisplayValues();
+
+  //document creation
+  var docCreate = DocumentApp.create('Work order for ' + data[data.length-1][1]);
+  var body = docCreate.getBody();
+  var index = 0;
+  var startRow = data.length-1;
+
+
+
+  //style elements
+  var headerStyle = {}
+  headerStyle[DocumentApp.Attribute.BOLD] = true;
+
+
+
+  //table layout
+  var nameTable = [
+    ['Name', data[startRow][1]]
+  ]
+
+  var dateTable = [
+    ['Date', data[startRow][2]]
+  ]
+
+  var requestTable = [
+    ['Request', data[startRow][3]]
+  ]
+
+
+  var priceTable = [
+    ['Price', data[startRow][4]]
+  ]
+
+
+  var notesTable = [
+    ['Notes', data[startRow][5]]
+  ]
+
+
+  var name = body.insertTable(index, nameTable); index++;
+    name.getCell(0,0).setWidth(75).setBackgroundColor('#b7b7b7').setAttributes(headerStyle);
+    name.getCell(0,1).setWidth(175);
+
+
+  var date = body.insertTable(index,dateTable); index++;
+    date.getCell(0,0).setWidth(75).setBackgroundColor('#b7b7b7').setAttributes(headerStyle);
+    date.getCell(0,1).setWidth(175);
+
+  var request = body.insertTable(index,requestTable); index++;
+    request.getCell(0,0).setWidth(75).setBackgroundColor('#b7b7b7').setAttributes(headerStyle);
+    request.getCell(0,1).setWidth(175);
+
+  var price = body.insertTable(index,priceTable); index++;
+    price.getCell(0,0).setWidth(75).setBackgroundColor('#b7b7b7').setAttributes(headerStyle);
+    price.getCell(0,1).setWidth(175);
+
+  var notes = body.insertTable(index,notesTable); index++;
+    notes.getCell(0,0).setWidth(75).setBackgroundColor('#b7b7b7').setAttributes(headerStyle);
+    notes.getCell(0,1);
+}
