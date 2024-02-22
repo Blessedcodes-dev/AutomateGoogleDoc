@@ -1,0 +1,16 @@
+//Get sheet by Id
+function getSheetById(wb_Id,sheet_Id) {
+  var wb = SpreadsheetApp.openById(wb_Id);
+  var sheets = wb.getSheets();
+
+
+  for(i in sheets){
+    if(sheets[i].getSheetId() == sheet_Id){
+      var sheetName = sheets[i].getSheetName();
+
+
+    } 
+  }
+  return wb.getSheetByName(sheetName);
+  
+}
